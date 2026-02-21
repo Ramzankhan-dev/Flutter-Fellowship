@@ -1,6 +1,7 @@
 //import "package:demo_app/home_page.dart";
-import 'package:demo_app/profile_card.dart';
-import 'package:demo_app/widgets.dart';
+//import 'package:demo_app/profile_card.dart';
+//import 'package:demo_app/widgets.dart';
+import 'package:demo_app/login.dart';
 import "package:flutter/material.dart";
 
 void main(){
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //home : HomePage(),
       //home : ProfileCard(),
-      home : Widgetpractice(),
+      //home : Widgetpractice(),
+      home: Login(),
     );
   }
 }
