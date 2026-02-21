@@ -1,38 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class ProfileCard extends StatelessWidget {
-//   const ProfileCard({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Profile Card'),
-//         backgroundColor: const Color.fromRGBO(43, 186, 243, 1),
-//       ),
-//       body: Center(
-//         child: Container(
-//           width: 300,
-//           height: 500,
-//           padding: EdgeInsets.all(10),
-//           alignment: Alignment.topCenter,
-//           decoration: BoxDecoration(
-//             color: const Color.fromARGB(255, 43, 186, 243),
-//             borderRadius: BorderRadius.circular(8),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Color.fromARGB(255, 57, 98, 114),
-//                 blurRadius: 15,
-//                 spreadRadius: 1,
-//               )
-//             ]
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
