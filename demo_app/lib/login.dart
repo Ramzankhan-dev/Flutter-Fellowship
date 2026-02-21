@@ -85,13 +85,14 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              
-              SizedBox(height: 40),
+              SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print("login clicked");
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 85, 174, 201),
                     padding: EdgeInsets.symmetric(vertical: 20),
@@ -109,12 +110,12 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 30),
 
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Or Login with",
+                  "Or Log in",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -122,12 +123,14 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print("login with google clicked");
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 207, 67, 31),
                     padding: EdgeInsets.symmetric(vertical: 20),
@@ -150,7 +153,9 @@ class _LoginState extends State<Login> {
               SizedBox(
                 width: double.infinity, // it take full screen width
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print("login with facebook clicked");
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 48, 27, 139),
                     padding: EdgeInsets.symmetric(vertical: 20),
@@ -167,6 +172,36 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(height: 30),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have account? ",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+            
+                  GestureDetector(
+                    onTap: () {
+                      print("sign up clicked");
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 226, 86, 21),
+                        
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
