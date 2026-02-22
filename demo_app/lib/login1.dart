@@ -1,10 +1,9 @@
-//import 'package:flutter/foundation.dart';
-import 'package:demo_app/login1.dart';
+import 'package:demo_app/signup1.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Signup1 extends StatelessWidget {
-  const Signup1({super.key});
+class Login1 extends StatelessWidget {
+  const Login1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,7 @@ class Signup1 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Welcome!",
+                          "Good to see you!",
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -75,7 +74,7 @@ class Signup1 extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          "sign up to get started",
+                          "lets continue the journey",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -112,26 +111,7 @@ class Signup1 extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16),
-                  Card(
-                    elevation: 4,
-                    shadowColor: Colors.blue.withOpacity(0.2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                          hintText: 'Enter your email',
-                          border: InputBorder.none,
-                          icon: Icon(Icons.email, color: Colors.blue),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
+
                   Card(
                     elevation: 4,
                     shadowColor: Colors.blue.withOpacity(0.2),
@@ -165,7 +145,7 @@ class Signup1 extends StatelessWidget {
                         elevation: 4,
                       ),
                       child: const Text(
-                        "Sign Up",
+                        "Log In",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -259,14 +239,14 @@ class Signup1 extends StatelessWidget {
 
                       GestureDetector(
                         onTap: () {
-                          print("sign up clicked");
+                          print("login clicked");
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Login1()),
+                            MaterialPageRoute(builder: (context) => Signup1()),
                           );
                         },
                         child: Text(
-                          "Login",
+                          "Sign Up",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

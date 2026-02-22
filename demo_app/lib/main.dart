@@ -2,7 +2,9 @@
 //import 'package:demo_app/profile_card.dart';
 //import 'package:demo_app/widgets.dart';
 //import 'package:demo_app/login.dart';
-import 'package:demo_app/signup1.dart';
+import 'package:demo_app/login1.dart';
+import 'package:demo_app/mainscreen.dart';
+//import 'package:demo_app/signup1.dart';
 //import 'package:demo_app/signup.dart';
 import "package:flutter/material.dart";
 
@@ -22,7 +24,9 @@ class MyApp extends StatelessWidget {
       //home : Widgetpractice(),
       //home: Login(),
       // home: Signup(),
-      home: Signup1(),
+      // home: Signup1(),
+      // home: Login1(),
+      home: MyWidget(),
     );
   }
 }
