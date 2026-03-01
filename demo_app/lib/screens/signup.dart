@@ -1,14 +1,14 @@
-import 'package:demo_app/signup.dart';
+import 'package:demo_app/screens/login.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   bool _isObscured = true;
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 85, 174, 201),
         title: Text(
-          "Login Page",
+          "Signup Page",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -31,11 +31,21 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
-
               Text(
-                "Welcome Back!",
+                "Let's Get start!",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Enter your Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                keyboardType: TextInputType.text,
+                obscureText: false, // it means text is shown
               ),
               SizedBox(height: 20),
 
@@ -56,7 +66,7 @@ class _LoginState extends State<Login> {
                 obscureText: _isObscured, // Variable yahan use hoga
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Enter your Password",
+                  labelText: "Enter Password",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -73,26 +83,37 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
 
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Text(
-                  "Forget Password",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+              TextField(
+                obscureText: _isObscured, // Variable yahan use hoga
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  labelText: "Enter Confirmed Password",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isObscured ? Icons.visibility_off : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isObscured =
+                            !_isObscured; // True hai to false, false hai to true
+                      });
+                    },
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+
+              SizedBox(height: 20),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
                 child: ElevatedButton(
                   onPressed: () {
-                    print("login clicked");
+                    print("Signup clicked");
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 85, 174, 201),
@@ -102,7 +123,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   child: Text(
-                    "Log In",
+                    "Sign Up",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -116,8 +137,8 @@ class _LoginState extends State<Login> {
               const Divider(
                 color: Colors.grey, // Line ka rang
                 thickness: 1, // Line ki motayi
-                //indent: 20, // Left side se gap
-                //endIndent: 20, // Right side se gap
+                indent: 20, // Left side se gap
+                endIndent: 20, // Right side se gap
               ),
               Align(
                 alignment: Alignment.center,
@@ -130,7 +151,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
@@ -155,7 +176,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
@@ -180,13 +201,13 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have account? ",
+                    "Already have acccount? ",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -196,14 +217,14 @@ class _LoginState extends State<Login> {
 
                   GestureDetector(
                     onTap: () {
-                      print("sign up clicked");
+                      print("login clicked");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Signup()),
+                        MaterialPageRoute(builder: (context) => Login()),
                       );
                     },
                     child: Text(
-                      "Sign Up",
+                      "Log in",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

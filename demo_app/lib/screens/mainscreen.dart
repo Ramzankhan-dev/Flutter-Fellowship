@@ -1,10 +1,12 @@
+import 'package:demo_app/screens/product_screen.dart';
+import 'package:demo_app/screens/screen1.dart';
 import 'package:flutter/material.dart';
 // Apne saare imports yahan rakhein
-import 'package:demo_app/login.dart';
-import 'package:demo_app/login1.dart';
-import 'package:demo_app/profile_card.dart';
-import 'package:demo_app/signup1.dart';
-import 'package:demo_app/signup.dart';
+import 'package:demo_app/screens/login.dart';
+import 'package:demo_app/screens/login1.dart';
+import 'package:demo_app/screens/profile_card.dart';
+import 'package:demo_app/screens/signup1.dart';
+import 'package:demo_app/screens/signup.dart';
 
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
@@ -33,6 +35,8 @@ class MyWidget extends StatelessWidget {
               _navButton(context, "Modern Login", const Login1()),
               _navButton(context, "Modern Sign Up", const Signup1()),
               _navButton(context, "Profile Card", const ProfileCard()),
+              _navButton(context, "data validation & send", Screen1()),
+              _navButton(context, "Product screen", ProductScreen()),
             ],
           ),
         ),

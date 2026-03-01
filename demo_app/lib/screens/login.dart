@@ -1,14 +1,14 @@
-import 'package:demo_app/login.dart';
+import 'package:demo_app/screens/signup.dart';
 import 'package:flutter/material.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
+class _LoginState extends State<Login> {
   bool _isObscured = true;
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class _SignupState extends State<Signup> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 85, 174, 201),
         title: Text(
-          "Signup Page",
+          "Login Page",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -31,21 +31,11 @@ class _SignupState extends State<Signup> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Let's Get start!",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Enter your Name",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                keyboardType: TextInputType.text,
-                obscureText: false, // it means text is shown
+              Text(
+                "Welcome Back!",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
 
@@ -66,7 +56,7 @@ class _SignupState extends State<Signup> {
                 obscureText: _isObscured, // Variable yahan use hoga
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Enter Password",
+                  labelText: "Enter your Password",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -83,37 +73,26 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
-              TextField(
-                obscureText: _isObscured, // Variable yahan use hoga
-                keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(
-                  labelText: "Enter Confirmed Password",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _isObscured ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _isObscured =
-                            !_isObscured; // True hai to false, false hai to true
-                      });
-                    },
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  "Forget Password",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
                   ),
                 ),
               ),
-
-              SizedBox(height: 20),
+              SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Signup clicked");
+                    print("login clicked");
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 85, 174, 201),
@@ -123,7 +102,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                   child: Text(
-                    "Sign Up",
+                    "Log In",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -137,8 +116,8 @@ class _SignupState extends State<Signup> {
               const Divider(
                 color: Colors.grey, // Line ka rang
                 thickness: 1, // Line ki motayi
-                indent: 20, // Left side se gap
-                endIndent: 20, // Right side se gap
+                //indent: 20, // Left side se gap
+                //endIndent: 20, // Right side se gap
               ),
               Align(
                 alignment: Alignment.center,
@@ -151,7 +130,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
@@ -176,7 +155,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity, // it take full screen width
@@ -201,13 +180,13 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already have acccount? ",
+                    "Don't have account? ",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -217,14 +196,14 @@ class _SignupState extends State<Signup> {
 
                   GestureDetector(
                     onTap: () {
-                      print("login clicked");
+                      print("sign up clicked");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Login()),
+                        MaterialPageRoute(builder: (context) => Signup()),
                       );
                     },
                     child: Text(
-                      "Log in",
+                      "Sign Up",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

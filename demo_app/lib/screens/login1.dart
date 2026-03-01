@@ -1,4 +1,4 @@
-import 'package:demo_app/signup1.dart';
+import 'package:demo_app/screens/signup1.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
