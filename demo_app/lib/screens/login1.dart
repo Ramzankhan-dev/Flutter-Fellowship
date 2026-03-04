@@ -267,9 +267,10 @@
 //   }
 // }
 
-import 'package:demo_app/screens/signup1.dart';
+import 'package:demo_app/screens/Signup1.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class Login1 extends StatelessWidget {
   final VoidCallback toggleTheme;
@@ -282,7 +283,7 @@ class Login1 extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: isDark ? Colors.black : Colors.blue,
+        backgroundColor: isDark ? Colors.blue : Colors.black,
         elevation: 0,
         actions: [
           IconButton(
@@ -457,7 +458,7 @@ class Login1 extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Signup1()),
+                                builder: (context) =>  Signup1(toggleTheme: toggleTheme)),
                           );
                         },
                         child: const Text(

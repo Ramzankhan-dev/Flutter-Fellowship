@@ -1,10 +1,13 @@
-//import 'package:flutter/foundation.dart';
 import 'package:demo_app/screens/login1.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Signup1 extends StatelessWidget {
-  const Signup1({super.key});
+  // 1. Yahan toggleTheme ko receive karne ke liye variable add kiya
+  final VoidCallback toggleTheme;
+
+  // 2. Constructor mein isse required kiya
+  const Signup1({super.key, required this.toggleTheme});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class Signup1 extends StatelessWidget {
             Container(
               height: 200,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(100),
@@ -88,7 +91,7 @@ class Signup1 extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -99,8 +102,8 @@ class Signup1 extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
                         decoration: InputDecoration(
                           labelText: 'Username',
@@ -111,15 +114,15 @@ class Signup1 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Card(
                     elevation: 4,
                     shadowColor: Colors.blue.withOpacity(0.2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
                         decoration: InputDecoration(
                           labelText: 'Email',
@@ -131,15 +134,15 @@ class Signup1 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Card(
                     elevation: 4,
                     shadowColor: Colors.blue.withOpacity(0.2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
                         decoration: InputDecoration(
                           labelText: 'password',
@@ -151,8 +154,8 @@ class Signup1 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
-                  Container(
+                  const SizedBox(height: 24),
+                  SizedBox(
                     width: double.infinity,
                     height: 55,
                     child: ElevatedButton(
@@ -174,12 +177,12 @@ class Signup1 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(child: Divider(color: Colors.grey.shade300)),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
                           "OR",
                           style: TextStyle(color: Colors.grey.shade600),
@@ -200,7 +203,7 @@ class Signup1 extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.blue.shade100),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.google,
                             color: Colors.blue,
@@ -217,7 +220,7 @@ class Signup1 extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.blue.shade100),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.facebook,
                           color: Colors.blue,
                           size: 45,
@@ -232,40 +235,39 @@ class Signup1 extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.blue.shade100),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.twitter,
                             color: Colors.blue,
                             size: 30,
                           ),
                         ),
-
-                        //child: Icon(Icons.g_mobiledata, color: Colors.red, size: 40),
                       ),
                     ],
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Don't have account? ",
+                      const Text(
+                        "Already have an account? ",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
                         ),
                       ),
-
                       GestureDetector(
                         onTap: () {
-                          print("sign up clicked");
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Login1(toggleTheme: toggleTheme)),
+                            MaterialPageRoute(
+                              // 3. Yahan class wala toggleTheme pass ho raha hai
+                              builder: (context) => Login1(toggleTheme: toggleTheme),
+                            ),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           "Login",
                           style: TextStyle(
                             fontSize: 14,
@@ -279,7 +281,7 @@ class Signup1 extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),

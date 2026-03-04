@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+// Apne project structure ke mutabiq imports check karlein
 import 'package:demo_app/screens/product_screen.dart';
 import 'package:demo_app/screens/screen1.dart';
 import 'package:demo_app/screens/weather_screen.dart';
-import 'package:flutter/material.dart';
-
 import 'package:demo_app/screens/login.dart';
 import 'package:demo_app/screens/login1.dart';
 import 'package:demo_app/screens/profile_card.dart';
@@ -30,8 +30,7 @@ class _MyWidgetState extends State<MyWidget> {
     return Theme(
       data: isDark ? ThemeData.dark() : ThemeData.light(),
       child: Scaffold(
-        backgroundColor:
-            isDark ? Colors.grey[900] : Colors.blue.shade200,
+        backgroundColor: isDark ? Colors.grey[900] : Colors.blue.shade200,
         appBar: AppBar(
           title: const Text(
             "Screen Navigation",
@@ -41,26 +40,20 @@ class _MyWidgetState extends State<MyWidget> {
           backgroundColor: isDark ? Colors.black : Colors.blue,
           actions: [
             IconButton(
-              icon: Icon(
-                isDark ? Icons.light_mode : Icons.dark_mode,
-              ),
+              icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
               onPressed: toggleTheme,
             ),
           ],
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
             child: Column(
               children: [
                 _navButton(context, "Simple Sign Up", const Signup()),
                 _navButton(context, "Simple Login", const Login()),
-                _navButton(
-                    context,
-                    "Modern Login",
-                    Login1(toggleTheme: toggleTheme)), // pass toggle
-                _navButton(context, "Modern Sign Up", const Signup1()),
+                _navButton(context, "Modern Login", Login1(toggleTheme: toggleTheme)),
+                _navButton(context, "Modern Sign Up",  Signup1(toggleTheme: toggleTheme)),
                 _navButton(context, "Profile Card", const ProfileCard()),
                 _navButton(context, "Data Validation & Send", Screen1()),
                 _navButton(context, "Product Screen", ProductScreen()),
@@ -96,8 +89,7 @@ class _MyWidgetState extends State<MyWidget> {
           ),
           child: Text(
             title,
-            style:
-                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
       ),
