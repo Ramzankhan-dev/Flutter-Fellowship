@@ -96,4 +96,4 @@ lib/
 ---
 
 ## 🤝 Contact
-Made by **Muhhammad** — feel free to reach out for Firebase credentials!
+Made by **Muhammad Ramzan** — feel free to reach out for Firebase credentials!
