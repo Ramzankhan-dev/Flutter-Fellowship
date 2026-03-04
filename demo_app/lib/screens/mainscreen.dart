@@ -2,56 +2,82 @@ import 'package:demo_app/screens/product_screen.dart';
 import 'package:demo_app/screens/screen1.dart';
 import 'package:demo_app/screens/weather_screen.dart';
 import 'package:flutter/material.dart';
-// Apne saare imports yahan rakhein
+
 import 'package:demo_app/screens/login.dart';
 import 'package:demo_app/screens/login1.dart';
 import 'package:demo_app/screens/profile_card.dart';
 import 'package:demo_app/screens/signup1.dart';
 import 'package:demo_app/screens/signup.dart';
 
-class MyWidget extends StatelessWidget {
+class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
 
   @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  bool isDark = false;
+
+  void toggleTheme() {
+    setState(() {
+      isDark = !isDark;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue.shade200,
-      appBar: AppBar(
-        title: const Text(
-          "Screen Navigation",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+    return Theme(
+      data: isDark ? ThemeData.dark() : ThemeData.light(),
+      child: Scaffold(
+        backgroundColor:
+            isDark ? Colors.grey[900] : Colors.blue.shade200,
+        appBar: AppBar(
+          title: const Text(
+            "Screen Navigation",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          backgroundColor: isDark ? Colors.black : Colors.blue,
+          actions: [
+            IconButton(
+              icon: Icon(
+                isDark ? Icons.light_mode : Icons.dark_mode,
+              ),
+              onPressed: toggleTheme,
+            ),
+          ],
         ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView( // Agar buttons zyada hon to scroll ho sakein
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
-          child: Column(
-            children: [
-              // Custom Helper Method use kar rahe hain
-              _navButton(context, "Simple Sign Up", const Signup()),
-              _navButton(context, "Simple Login", const Login()),
-              _navButton(context, "Modern Login", const Login1()),
-              _navButton(context, "Modern Sign Up", const Signup1()),
-              _navButton(context, "Profile Card", const ProfileCard()),
-              _navButton(context, "data validation & send", Screen1()),
-              _navButton(context, "Product screen", ProductScreen()),
-              _navButton(context, "Weather screen", WeatherScreen()),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+            child: Column(
+              children: [
+                _navButton(context, "Simple Sign Up", const Signup()),
+                _navButton(context, "Simple Login", const Login()),
+                _navButton(
+                    context,
+                    "Modern Login",
+                    Login1(toggleTheme: toggleTheme)), // pass toggle
+                _navButton(context, "Modern Sign Up", const Signup1()),
+                _navButton(context, "Profile Card", const ProfileCard()),
+                _navButton(context, "Data Validation & Send", Screen1()),
+                _navButton(context, "Product Screen", ProductScreen()),
+                _navButton(context, "Weather Screen", WeatherScreen()),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  // Helper Widget: Is se code saaf rehta hai aur styling ek hi jagah se change hoti hai
   Widget _navButton(BuildContext context, String title, Widget screen) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15), // Buttons ke darmiyan gap
+      padding: const EdgeInsets.only(bottom: 15),
       child: SizedBox(
-        width: double.infinity, // Buttons ki width barabar karne ke liye
+        width: double.infinity,
         height: 55,
         child: ElevatedButton(
           onPressed: () {
@@ -61,7 +87,7 @@ class MyWidget extends StatelessWidget {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
+            backgroundColor: isDark ? Colors.grey[800] : Colors.blue,
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -70,7 +96,8 @@ class MyWidget extends StatelessWidget {
           ),
           child: Text(
             title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style:
+                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
       ),
