@@ -262,7 +262,7 @@ class Signup1 extends StatelessWidget {
                           print("sign up clicked");
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Login1()),
+                            MaterialPageRoute(builder: (context) => Login1(toggleTheme: toggleTheme)),
                           );
                         },
                         child: Text(
