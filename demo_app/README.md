@@ -1,16 +1,143 @@
-# demo_app
+# 📱 Flutter Fellowship — Demo App
 
-A new Flutter project.
+A Flutter learning project showcasing multiple UI screens, navigation patterns, API integration, and data handling.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- Multiple login & signup screen designs (Simple + Modern)
+- Profile card UI
+- Data validation & form handling
+- Product listing screen (REST API)
+- Weather app with live API integration
+- Screen navigation hub
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td align="center"><b>Main Screen</b></td>
+    <td align="center"><b>Simple Signup</b></td>
+    <td align="center"><b>Simple Login</b></td>
+  </tr>
+  <tr>
+    <td><img src="screen_main.jpeg" width="200"/></td>
+    <td><img src="screen_simple_signup.jpeg" width="200"/></td>
+    <td><img src="screen_simple_login.jpeg" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Modern Login</b></td>
+    <td align="center"><b>Modern Signup</b></td>
+    <td align="center"><b>Profile Card</b></td>
+  </tr>
+  <tr>
+    <td><img src="screen_modern_login.jpeg" width="200"/></td>
+    <td><img src="screen_modern_signup.jpeg" width="200"/></td>
+    <td><img src="screen_profile.jpeg" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Products Screen</b></td>
+    <td align="center"><b>Data Validation</b></td>
+    <td align="center"><b>Weather App</b></td>
+  </tr>
+  <tr>
+    <td><img src="screen_products.jpeg" width="200"/></td>
+    <td><img src="screen_data_validation.jpeg" width="200"/></td>
+    <td><img src="screen_weather.jpeg" width="200"/></td>
+  </tr>
+</table>
+
+---
+
+## 🛠️ Tech Stack
+
+- **Flutter** (Dart)
+- **REST API** — OpenWeatherMap, FakeStoreAPI
+- **HTTP** package for network calls
+- **flutter_dotenv** for API key security
+
+---
+
+## ⚙️ Setup
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/YOUR_USERNAME/demo_app.git
+cd demo_app
+```
+
+### 2. Install dependencies
+```bash
+flutter pub get
+```
+
+### 3. Create `.env` file in project root
+```
+WEATHER_API_KEY=your_openweathermap_api_key_here
+```
+
+> Get your free API key at [openweathermap.org](https://openweathermap.org/api)
+
+### 4. Run the app
+```bash
+flutter run
+```
+
+---
+
+## 📁 Project Structure
+
+```
+lib/
+├── main.dart
+├── screens/
+│   ├── mainscreen.dart       # Navigation hub
+│   ├── login.dart            # Simple login
+│   ├── login1.dart           # Modern login
+│   ├── signup.dart           # Simple signup
+│   ├── signup1.dart          # Modern signup
+│   ├── profile_card.dart     # Profile UI
+│   ├── weather_screen.dart   # Weather app
+│   ├── product_screen.dart   # Products list
+│   └── home_page.dart
+├── modals/
+│   ├── Weather.dart
+│   └── product.dart
+└── services/
+    └── weather_service.dart
+```
+
+---
+
+## 🔒 API Key Security
+
+This project uses `flutter_dotenv` to keep the API key out of version control.
+
+- `.env` is listed in `.gitignore` — it will **not** be pushed to GitHub
+- A `.env.example` file is provided as a template
+
+---
+
+## 📦 Dependencies
+
+```yaml
+dependencies:
+  flutter_dotenv: ^5.1.0
+  http: ^1.2.0
+  font_awesome_flutter: ^10.0.0
+```
+
+---
+
+## 👨‍💻 Author
+
+**Ramzan** — Flutter Developer
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
