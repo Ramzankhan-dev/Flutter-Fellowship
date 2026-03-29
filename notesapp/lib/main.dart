@@ -4,7 +4,6 @@ import 'package:notesapp/splash_screen.dart';
 //import 'home_screen.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
@@ -18,7 +17,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      debugShowCheckedModeBanner: false, 
+      home: SplashScreen()
     );
   }
 }
