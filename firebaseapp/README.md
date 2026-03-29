@@ -1,76 +1,71 @@
-# firebaseapp
+# 💬 Chat App
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# 🔥 Firebase Chat App
-
-A real-time chat application built with Flutter & Firebase.
-
-## ✨ Features
-- 🔐 Login & Register (Email/Password)
-- 💬 Real-time messaging
-- 🌙 Dark theme UI
-- 🔒 Secure with Firebase Auth & Firestore Rules
+A real-time Flutter Chat App with **Firebase** authentication and live messaging. Multiple users can register, login, and chat together in a shared Chat Room!
 
 ---
 
-## ⚙️ Setup (For New Developers)
+## 📸 Screenshots
 
-### 1️⃣ Clone the project
+<table>
+  <tr>
+    <td align="center"><b>Login Screen</b></td>
+    <td align="center"><b>Register Screen</b></td>
+    <td align="center"><b>Chat Room</b></td>
+  </tr>
+  <tr>
+    <td><img src="chat_login.jpeg" width="200"/></td>
+    <td><img src="chat_register.jpeg" width="200"/></td>
+    <td><img src="chat_room.jpeg" width="200"/></td>
+  </tr>
+</table>
+
+---
+
+## 🚀 Features
+
+- 🔐 User Registration with Email & Password
+- 🔑 User Login with Firebase Authentication
+- 💬 Real-time Chat Room — all users chat together
+- 📨 Messages show sender email + timestamp
+- 🟣 Your messages shown on right (purple bubble)
+- 🔵 Others' messages shown on left (dark bubble)
+- 🚪 Logout button in AppBar
+- 🌙 Dark theme with purple accent
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Usage |
+|---|---|
+| **Flutter** | UI Framework |
+| **Firebase Auth** | User Login & Register |
+| **Firebase Firestore** | Real-time messages storage |
+
+---
+
+## ⚙️ Setup
+
+### 1. Clone the repo
 ```bash
-git clone https://github.com/your-username/firebaseapp.git
-cd firebaseapp
+git clone https://github.com/Ramzankhan-dev/Flutter-Fellowship.git
+cd Flutter-Fellowship/chatapp
 ```
 
-### 2️⃣ Install dependencies
+### 2. Install dependencies
 ```bash
 flutter pub get
 ```
 
-### 3️⃣ Firebase Setup
-> `google-services.json` and `firebase_options.dart` are not included for security reasons.
-> You need to generate them yourself.
+### 3. Firebase Setup
+- Go to [Firebase Console](https://console.firebase.google.com/)
+- Create a new project
+- Enable **Authentication** → Email/Password
+- Enable **Cloud Firestore**
+- Download `google-services.json` → paste in `android/app/`
+- Run the app
 
-**Step 1:** Go to [Firebase Console](https://console.firebase.google.com)
-
-**Step 2:** Create a new project OR ask the owner to add you to existing project
-
-**Step 3:** Add Android app with package name:
-```
-com.example.firebaseapp
-```
-
-**Step 4:** Download `google-services.json` and place it here:
-```
-android/app/google-services.json
-```
-
-**Step 5:** Install Firebase CLI & FlutterFire CLI:
-```bash
-npm install -g firebase-tools
-firebase login
-dart pub global activate flutterfire_cli
-```
-
-**Step 6:** Generate `firebase_options.dart`:
-```bash
-dart pub global run flutterfire_cli:flutterfire configure
-```
-
-### 4️⃣ Run the app
+### 4. Run the app
 ```bash
 flutter run
 ```
@@ -78,22 +73,34 @@ flutter run
 ---
 
 ## 📁 Project Structure
+
 ```
 lib/
-  main.dart             # App entry point
-  login_screen.dart     # Login UI
-  register_screen.dart  # Register UI
-  chat_screen.dart      # Chat UI
+├── main.dart           # App entry point, Firebase init
+├── login_screen.dart   # Login UI with email & password
+├── register_screen.dart # Register UI with confirm password
+└── chat_screen.dart    # Real-time chat room
 ```
 
 ---
 
-## 🛡️ Security
-- Firebase Auth — only registered users can access
-- Firestore Rules — only logged-in users can read/write
-- API keys are restricted to this app only
+## 📦 Dependencies
+
+```yaml
+dependencies:
+  firebase_core: latest
+  firebase_auth: latest
+  cloud_firestore: latest
+```
 
 ---
 
-## 🤝 Contact
-Made by **Muhammad Ramzan** — feel free to reach out for Firebase credentials!
+## 👨‍💻 Author
+
+**Ramzan** — Flutter Developer
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
