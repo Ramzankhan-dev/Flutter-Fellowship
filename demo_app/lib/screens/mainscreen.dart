@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// Apne project structure ke mutabiq imports check karlein
 import 'package:demo_app/screens/product_screen.dart';
 import 'package:demo_app/screens/screen1.dart';
 import 'package:demo_app/screens/weather_screen.dart';
@@ -52,8 +51,8 @@ class _MyWidgetState extends State<MyWidget> {
               children: [
                 _navButton(context, "Simple Sign Up", const Signup()),
                 _navButton(context, "Simple Login", const Login()),
-                _navButton(context, "Modern Login", Login1(toggleTheme: toggleTheme)),
-                _navButton(context, "Modern Sign Up",  Signup1(toggleTheme: toggleTheme)),
+                _navButton(context, "Modern Login", Login1()),
+                _navButton(context, "Modern Sign Up",  Signup1()),
                 _navButton(context, "Profile Card", const ProfileCard()),
                 _navButton(context, "Data Validation & Send", Screen1()),
                 _navButton(context, "Product Screen", ProductScreen()),

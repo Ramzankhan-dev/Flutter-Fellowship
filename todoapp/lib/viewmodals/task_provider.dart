@@ -3,7 +3,7 @@ import 'package:todoapp/modals/task_modal.dart';  // Task model import
 
 class TaskProvider extends ChangeNotifier {
   // 📦 1. State - Data store karne ki jagah
-  List<Task> _tasks = [];  // Private variable (_ means private)
+  final List<Task> _tasks = [];  // Private variable (_ means private)
 
   // Getter - Private data ko read karne ka public method
   List<Task> get tasks => _tasks;

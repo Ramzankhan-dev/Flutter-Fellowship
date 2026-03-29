@@ -19,5 +19,5 @@ print(userCity ?? "Unknown"); // Output: Lahore
 String? secretCode ="xyz789";
 // Dart ko shak hai ke ye null ho sakta hai, lekin humne '!' laga kar usay chup karwa diya. 
 
-print(secretCode!.length); // error of unhandle
+print(secretCode.length); // error of unhandle
 }

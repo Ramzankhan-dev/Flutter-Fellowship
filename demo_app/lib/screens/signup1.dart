@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Signup1 extends StatelessWidget {
-  // 1. Yahan toggleTheme ko receive karne ke liye variable add kiya
-  final VoidCallback toggleTheme;
-
-  // 2. Constructor mein isse required kiya
-  const Signup1({super.key, required this.toggleTheme});
+  const Signup1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -263,7 +259,7 @@ class Signup1 extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               // 3. Yahan class wala toggleTheme pass ho raha hai
-                              builder: (context) => Login1(toggleTheme: toggleTheme),
+                              builder: (context) => Login1(),
                             ),
                           );
                         },
