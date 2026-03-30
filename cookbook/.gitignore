@@ -44,8 +44,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# API Keys - NEVER commit these
+
+# API keys and secret config files — never commit these
+dart_define.json
 .env
 *.env
-dart_define.json
 api_keys.dart
+lib/config/secrets.dart

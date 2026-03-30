@@ -2,9 +2,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/recipe.dart';
+import '../utils/constants.dart'; // import added
 
 class MealApiService {
-  static const String _baseUrl = 'https://www.themealdb.com/api/json/v1/1';
+  // Base URL now comes from constants (dart-define or default)
+  static const String _baseUrl = kApiBaseUrl;
 
   // ─── Search meals by name ──────────────────────────────
   static Future<List<Recipe>> searchMeals(String query) async {
@@ -16,13 +18,8 @@ class MealApiService {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         final meals = data['meals'];
-
-        // Agar koi meal nahi mila
         if (meals == null) return [];
-
-        return (meals as List)
-            .map((meal) => _mapToRecipe(meal))
-            .toList();
+        return (meals as List).map((meal) => _mapToRecipe(meal)).toList();
       } else {
         throw Exception('Server error: ${response.statusCode}');
       }
@@ -31,12 +28,10 @@ class MealApiService {
     }
   }
 
-  // ─── Category ke hisaab se meals ──────────────────────
+  // ─── Get meals by category ─────────────────────────────
   static Future<List<Recipe>> getMealsByCategory(String category) async {
     try {
-      // API category names alag hain, map karo
       final apiCategory = _mapCategory(category);
-
       final response = await http.get(
         Uri.parse('$_baseUrl/filter.php?c=$apiCategory'),
       );
@@ -46,10 +41,9 @@ class MealApiService {
         final meals = data['meals'];
         if (meals == null) return [];
 
-        // Filter endpoint sirf basic info deta hai
-        // Har meal ki full detail alag se fetch karni hogi
+        // Filter endpoint returns basic info only
+        // Fetch full detail for each meal separately
         final List<Recipe> recipes = [];
-        // Sirf pehle 8 lo — performance ke liye
         final limited = (meals as List).take(8).toList();
 
         for (final meal in limited) {
@@ -65,7 +59,7 @@ class MealApiService {
     }
   }
 
-  // ─── Single meal by ID ────────────────────────────────
+  // ─── Get single meal detail by ID ─────────────────────
   static Future<Recipe?> getMealById(String id) async {
     try {
       final response = await http.get(
@@ -84,7 +78,7 @@ class MealApiService {
     }
   }
 
-  // ─── Random meals for home screen ─────────────────────
+  // ─── Get random meals for home screen ─────────────────
   static Future<List<Recipe>> getRandomMeals({int count = 10}) async {
     final List<Recipe> recipes = [];
     for (int i = 0; i < count; i++) {
@@ -100,18 +94,18 @@ class MealApiService {
           }
         }
       } catch (_) {
+        // Skip failed individual requests, continue loop
         continue;
       }
     }
     return recipes;
   }
 
-  // ─── API category name mapper ─────────────────────────
-  // Hamari app ki categories → TheMealDB categories
+  // ─── Map app category to TheMealDB category ───────────
   static String _mapCategory(String appCategory) {
     const map = {
       'Breakfast': 'Breakfast',
-      'Lunch':     'Chicken',    // TheMealDB mein Lunch nahi hai
+      'Lunch':     'Chicken',
       'Dinner':    'Beef',
       'Dessert':   'Dessert',
       'Snack':     'Miscellaneous',
@@ -120,15 +114,15 @@ class MealApiService {
     return map[appCategory] ?? 'Chicken';
   }
 
-  // ─── API response → Recipe model ──────────────────────
+  // ─── Convert API JSON response to Recipe model ─────────
   static Recipe _mapToRecipe(Map<String, dynamic> meal) {
-    // Ingredients extract karo (API mein 20 slots hain)
+    // Extract ingredients — API provides up to 20 slots
     final List<Ingredient> ingredients = [];
     for (int i = 1; i <= 20; i++) {
-      final name     = meal['strIngredient$i'];
-      final measure  = meal['strMeasure$i'];
+      final name    = meal['strIngredient$i'];
+      final measure = meal['strMeasure$i'];
 
-      // Empty slots skip karo
+      // Skip empty ingredient slots
       if (name != null && name.toString().trim().isNotEmpty) {
         ingredients.add(Ingredient(
           name:     name.toString().trim(),
@@ -137,7 +131,7 @@ class MealApiService {
       }
     }
 
-    // Instructions ko steps mein todna
+    // Split instructions string into individual steps
     final instructions = meal['strInstructions'] ?? '';
     final List<String> steps = instructions
         .toString()
@@ -146,7 +140,7 @@ class MealApiService {
         .map((s) => s.trim())
         .toList();
 
-    // Category map karo
+    // Map API category to app category
     final apiCategory = meal['strCategory']?.toString() ?? 'Dinner';
     final appCategory = _mapApiCategory(apiCategory);
 
@@ -159,12 +153,14 @@ class MealApiService {
       cookTime:    _estimateCookTime(steps.length),
       difficulty:  _estimateDifficulty(ingredients.length, steps.length),
       ingredients: ingredients,
-      steps:       steps.isEmpty ? ['Follow the recipe instructions.'] : steps,
+      steps:       steps.isEmpty
+                     ? ['Follow the recipe instructions.']
+                     : steps,
       isFavorite:  false,
     );
   }
 
-  // ─── TheMealDB category → App category ───────────────
+  // ─── Map TheMealDB category to app category ────────────
   static String _mapApiCategory(String apiCat) {
     const map = {
       'Breakfast':     'Breakfast',
@@ -182,15 +178,15 @@ class MealApiService {
     return map[apiCat] ?? 'Dinner';
   }
 
-  // ─── Helper: rating generate karo ID se ──────────────
-  // API mein rating nahi hoti — ID se consistent random value banate hain
+  // ─── Generate consistent rating from meal ID ──────────
+  // API does not provide ratings, so we derive one from the ID
   static double _generateRating(String id) {
     final num = int.tryParse(id) ?? 0;
-    final base = (num % 20) / 10.0; // 0.0 to 1.9
+    final base = (num % 20) / 10.0;
     return (3.2 + base).clamp(3.2, 5.0);
   }
 
-  // ─── Helper: steps se cook time estimate ─────────────
+  // ─── Estimate cook time based on number of steps ──────
   static int _estimateCookTime(int stepCount) {
     if (stepCount <= 3)  return 15;
     if (stepCount <= 6)  return 30;
@@ -198,7 +194,7 @@ class MealApiService {
     return 60;
   }
 
-  // ─── Helper: difficulty estimate ─────────────────────
+  // ─── Estimate difficulty from ingredient and step count ─
   static String _estimateDifficulty(int ingCount, int stepCount) {
     final total = ingCount + stepCount;
     if (total <= 8)  return 'Easy';

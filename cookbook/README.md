@@ -1,16 +1,59 @@
-# cookbook
+# CookBook 🍳
 
-A new Flutter project.
+A Flutter recipe app built with TheMealDB API.
 
-## Getting Started
+## Features
+- Browse and search real recipes from TheMealDB
+- Filter by category (Breakfast, Lunch, Dinner, Dessert, Snack)
+- Save favorites with local storage
+- Dark / Light theme
+- Add and edit custom recipes
 
-This project is a starting point for a Flutter application.
+## Screens
+- Home Screen — featured + popular recipes
+- Recipe Detail — ingredients, steps, start cooking
+- Favorites — saved recipes with sort options
+- Settings — theme, preferences, about
+- Add/Edit Recipe — custom recipe form
+- Browse by Category — category-wise recipe grid
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
+- Flutter + Dart
+- TheMealDB API (free, no key required)
+- shared_preferences — local storage
+- cached_network_image — smooth image loading
+- http — API calls
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Run the App
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Normal run (free API)
+```bash
+flutter run
+```
+
+### With custom API URL (future paid API)
+```bash
+flutter run \
+  --dart-define=API_BASE_URL=https://your-api.com \
+  --dart-define=API_KEY=your_key_here
+```
+
+## Build APK
+```bash
+flutter build apk --release
+```
+
+## Project Structure
+```
+lib/
+├── main.dart
+├── models/         # Recipe, Ingredient models
+├── screens/        # All app screens
+├── widgets/        # Reusable UI components
+├── services/       # API + preferences services
+└── utils/          # Constants, sample data
+```
+
+## Security Note
+API keys are passed via `--dart-define` at build time.
+They are never hardcoded in source code.
