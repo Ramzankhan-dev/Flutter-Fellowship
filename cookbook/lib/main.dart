@@ -1,26 +1,39 @@
 
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
+import 'services/preferences_service.dart';
 import 'utils/constants.dart';
 
-void main() {
-  runApp(const CookBookApp());
+void main() async {
+  // SharedPreferences use karne se pehle ye zaroori hai
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Saved theme load karo
+  final savedDarkMode = await PreferencesService.loadTheme();
+
+  runApp(CookBookApp(initialDarkMode: savedDarkMode));
 }
 
 class CookBookApp extends StatefulWidget {
-  const CookBookApp({super.key});
+  final bool initialDarkMode;
+  const CookBookApp({super.key, required this.initialDarkMode});
 
   @override
   State<CookBookApp> createState() => _CookBookAppState();
 }
 
 class _CookBookAppState extends State<CookBookApp> {
-  bool isDarkMode = true; // default dark theme
+  late bool isDarkMode;
+
+  @override
+  void initState() {
+    super.initState();
+    isDarkMode = widget.initialDarkMode;
+  }
 
   void toggleTheme(bool value) {
-    setState(() {
-      isDarkMode = value;
-    });
+    setState(() => isDarkMode = value);
+    PreferencesService.saveTheme(value); // save to storage
   }
 
   @override

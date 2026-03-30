@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import '../utils/constants.dart';
+import '../services/preferences_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   final bool isDarkMode;
@@ -22,6 +22,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _autoSync = false;
   String _defaultCategory = 'Lunch';
 
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    final compact = await PreferencesService.loadCompactCards();
+    final notifs = await PreferencesService.loadNotifications();
+    final defCat = await PreferencesService.loadDefaultCategory();
+    setState(() {
+      _compactCards = compact;
+      _cookingNotifications = notifs;
+      _defaultCategory = defCat;
+    });
+  }
+
   Widget _buildSection(String title, List<Widget> children) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,10 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
@@ -64,10 +78,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         child: Icon(icon, color: Colors.white, size: 20),
       ),
-      title: Text(title,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
-      subtitle: Text(subtitle,
-          style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+      ),
       trailing: Switch(
         value: value,
         onChanged: onChanged,
@@ -94,12 +112,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         child: Icon(icon, color: Colors.white, size: 20),
       ),
-      title: Text(title,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
-      subtitle: Text(subtitle,
-          style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
-      trailing: trailing ??
-          const Icon(Icons.chevron_right, color: Colors.grey),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+      ),
+      trailing: trailing ?? const Icon(Icons.chevron_right, color: Colors.grey),
     );
   }
 
@@ -156,15 +177,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       value: _defaultCategory,
                       underline: const SizedBox(),
                       dropdownColor: kCardDark,
-                      style: TextStyle(
-                          fontSize: 13, color: kPrimaryColor),
+                      style: TextStyle(fontSize: 13, color: kPrimaryColor),
                       items: kCategories
                           .where((c) => c != 'All')
-                          .map((c) => DropdownMenuItem(
-                              value: c, child: Text(c)))
+                          .map(
+                            (c) => DropdownMenuItem(value: c, child: Text(c)),
+                          )
                           .toList(),
-                      onChanged: (v) =>
-                          setState(() => _defaultCategory = v!),
+                      onChanged: (v) {
+                        // ← updated
+                        setState(() => _defaultCategory = v!);
+                        PreferencesService.saveDefaultCategory(v!);
+                      },
                     ),
                     const Icon(Icons.chevron_right, color: Colors.grey),
                   ],
@@ -177,8 +201,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: 'Cooking Notifications',
                 subtitle: 'Get reminders for cooking times',
                 value: _cookingNotifications,
-                onChanged: (v) =>
-                    setState(() => _cookingNotifications = v),
+                onChanged: (v) {
+                  // ← updated
+                  setState(() => _cookingNotifications = v);
+                  PreferencesService.saveNotifications(v);
+                },
               ),
               const Divider(height: 1, indent: 70),
               _buildSwitchTile(
@@ -187,7 +214,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: 'Auto Sync',
                 subtitle: 'Automatically sync recipes across devices',
                 value: _autoSync,
-                onChanged: (v) => setState(() => _autoSync = v),
+                onChanged: (v) =>
+                    setState(() => _autoSync = v), // ye same rahega
               ),
             ]),
 
@@ -219,14 +247,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(Icons.restaurant_menu,
-                      color: Colors.white, size: 20),
+                  child: const Icon(
+                    Icons.restaurant_menu,
+                    color: Colors.white,
+                    size: 20,
+                  ),
                 ),
-                title: const Text('CookBook',
-                    style: TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.bold)),
-                subtitle: const Text('Version 1.0.0\nYour personal recipe collection',
-                    style: TextStyle(fontSize: 12)),
+                title: const Text(
+                  'CookBook',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                subtitle: const Text(
+                  'Version 1.0.0\nYour personal recipe collection',
+                  style: TextStyle(fontSize: 12),
+                ),
               ),
               const Divider(height: 1, indent: 70),
               _buildArrowTile(

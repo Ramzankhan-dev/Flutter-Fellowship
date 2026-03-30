@@ -34,4 +34,30 @@ class Recipe {
     required this.steps,
     this.isFavorite = false,
   });
+
+  Recipe copyWith({
+    String? id,
+    String? title,
+    String? category,
+    String? imageUrl,
+    double? rating,
+    int? cookTime,
+    String? difficulty,
+    List<Ingredient>? ingredients,
+    List<String>? steps,
+    bool? isFavorite,
+  }) {
+    return Recipe(
+      id:          id          ?? this.id,
+      title:       title       ?? this.title,
+      category:    category    ?? this.category,
+      imageUrl:    imageUrl    ?? this.imageUrl,
+      rating:      rating      ?? this.rating,
+      cookTime:    cookTime    ?? this.cookTime,
+      difficulty:  difficulty  ?? this.difficulty,
+      ingredients: ingredients ?? this.ingredients,
+      steps:       steps       ?? this.steps,
+      isFavorite:  isFavorite  ?? this.isFavorite,
+    );
+  }
 }
